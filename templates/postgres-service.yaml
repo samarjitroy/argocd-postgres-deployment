@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ template "argocd-postgres-helm.name" . }}-service
+spec:
+  selector:
+    app: {{ template "argocd-postgres-helm.name" . }}
+  ports:
+    - protocol: TCP
+      port: {{ .Values.service.port }}
+      targetPort: {{ .Values.service.port }}
+

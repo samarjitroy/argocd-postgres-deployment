@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ template "argocd-postgres-helm.fullname" . }}-deployment
+  labels:
+    app: {{ template "argocd-postgres-helm.name" . }}
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: {{ template "argocd-postgres-helm.name" . }}
+  template:
+    metadata:
+      labels:
+        app: {{ template "argocd-postgres-helm.name" . }}
+    spec:
+      containers:
+      - name: {{ .Chart.Name }}
+        image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+        ports:
+        - containerPort: {{ .Values.service.port }}
+        env:
+        - name: POSTGRES_USER
+          valueFrom:
+            secretKeyRef:
+              name: {{ template "argocd-postgres-helm.name" . }}-secret
+              key: postgres-root-username
+        - name: POSTGRES_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: {{ template "argocd-postgres-helm.name" . }}-secret
+              key: postgres-root-password
+

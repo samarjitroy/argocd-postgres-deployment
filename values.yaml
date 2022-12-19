@@ -5,13 +5,18 @@
 replicaCount: 1
 
 image:
-  repository: gpostgres:14.6
-  tag: 0.1
+  repository: postgres
+  tag: 14.6
   pullPolicy: IfNotPresent
 
 service:
   type: ClusterIP
   port: 5432
+
+secret:
+  username: ZGJtb25pdG9yCg==
+  password: U2NvdGlhMjAyMgo=
+
 
 ingress:
   enabled: false
