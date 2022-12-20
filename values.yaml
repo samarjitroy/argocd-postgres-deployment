@@ -6,7 +6,7 @@ replicaCount: 1
 
 image:
   repository: postgres
-  tag: 14.6
+  tag: 15.1
   pullPolicy: IfNotPresent
 
 service:
