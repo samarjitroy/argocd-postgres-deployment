@@ -19,6 +19,9 @@ spec:
         image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
         ports:
         - containerPort: {{ .Values.service.port }}
+        volumeMounts:
+        - name: pgdata
+          mountPath: /var/lib/pgdata
         env:
         - name: POSTGRES_USER
           valueFrom:
@@ -30,3 +33,11 @@ spec:
             secretKeyRef:
               name: {{ template "argocd-postgres-helm.name" . }}-secret
               key: postgres-password
+  volumeClaimTemplates:
+  - metadata:
+      name: pgdata
+    spec:
+      accessModes: [ "ReadWrite" ]
+      resources:
+        requests:
+          storage: 10GB
