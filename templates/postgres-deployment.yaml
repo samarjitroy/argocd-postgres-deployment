@@ -21,7 +21,7 @@ spec:
         - containerPort: {{ .Values.service.port }}
         volumeMounts:
         - name: pgdata
-          mountPath: /var/lib/pgdata
+          mountPath: /data
         env:
         - name: POSTGRES_USER
           valueFrom:
@@ -33,11 +33,13 @@ spec:
             secretKeyRef:
               name: {{ template "argocd-postgres-helm.name" . }}-secret
               key: postgres-password
+        - name: PGDATA
+          value: /data/pgdata
   volumeClaimTemplates:
   - metadata:
       name: pgdata
     spec:
-      accessModes: [ "ReadWrite" ]
+      accessModes: [ "ReadWriteOnce" ]
       resources:
         requests:
-          storage: 1Gi
+          storage: 10Gi
