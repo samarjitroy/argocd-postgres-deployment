@@ -24,10 +24,9 @@ spec:
           valueFrom:
             secretKeyRef:
               name: {{ template "argocd-postgres-helm.name" . }}-secret
-              key: postgres-root-username
+              key: postgres-username
         - name: POSTGRES_PASSWORD
           valueFrom:
             secretKeyRef:
               name: {{ template "argocd-postgres-helm.name" . }}-secret
-              key: postgres-root-password
-
+              key: postgres-password
