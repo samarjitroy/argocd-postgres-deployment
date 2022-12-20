@@ -21,13 +21,6 @@ spec:
         - containerPort: {{ .Values.service.port }}
         env:
         - name: POSTGRES_USER
-          valueFrom:
-            secretKeyRef:
-              name: {{ template "argocd-postgres-helm.name" . }}-secret
-              key: postgres-root-username
+          value: postgres
         - name: POSTGRES_PASSWORD
-          valueFrom:
-            secretKeyRef:
-              name: {{ template "argocd-postgres-helm.name" . }}-secret
-              key: postgres-root-password
-
+          value: Scotia2022
