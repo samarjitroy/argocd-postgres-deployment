@@ -9,6 +9,8 @@ spec:
   selector:
     matchLabels:
       app: {{ template "argocd-postgres-helm.name" . }}
+  serviceName: {{ template "argocd-postgres-helm.name" . }}-service
+  replicas: 2
   template:
     metadata:
       labels:
@@ -21,25 +23,20 @@ spec:
         - containerPort: {{ .Values.service.port }}
         volumeMounts:
         - name: pgdata
-          mountPath: /data
+          mountPath: /data/pgdata
         env:
         - name: POSTGRES_USER
-          valueFrom:
-            secretKeyRef:
-              name: {{ template "argocd-postgres-helm.name" . }}-secret
-              key: postgres-username
+          value: postgres
         - name: POSTGRES_PASSWORD
-          valueFrom:
-            secretKeyRef:
-              name: {{ template "argocd-postgres-helm.name" . }}-secret
-              key: postgres-password
+          value: Scotia2022
         - name: PGDATA
-          value: /data/pgdata
+          mountPath: /data/pgdata
   volumeClaimTemplates:
   - metadata:
       name: pgdata
     spec:
       accessModes: [ "ReadWriteOnce" ]
+      storageClassName: "manual"
       resources:
         requests:
-          storage: 10Gi
+          storage: 2Gi
