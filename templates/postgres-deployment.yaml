@@ -1,16 +1,15 @@
 apiVersion: apps/v1
 kind: StatefulSet
 metadata:
-  name: {{ template "argocd-postgres-helm.fullname" . }}-deployment
+  name: {{ template "argocd-postgres-helm.name" . }}-deployment
   labels:
     app: {{ template "argocd-postgres-helm.name" . }}
 spec:
-  replicas: 1
+  replicas: 2
   selector:
     matchLabels:
       app: {{ template "argocd-postgres-helm.name" . }}
   serviceName: {{ template "argocd-postgres-helm.name" . }}-service
-  replicas: 2
   template:
     metadata:
       labels:
