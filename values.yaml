@@ -14,7 +14,7 @@ service:
   port: 5432
 
 secret:
-  username: ZGJhZG1pbgo=
+  username: cG9zdGdyZXMK
   password: U2NvdGlhMjAyMgo=
 
 
