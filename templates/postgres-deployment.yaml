@@ -34,6 +34,8 @@ spec:
   - metadata:
       name: pgdata
     spec:
+      whenDeleted: Delete
+      whenScaled: Delete
       accessModes:
       - ReadWriteOnce
       storageClassName: "manual"

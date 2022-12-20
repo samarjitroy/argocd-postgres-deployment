@@ -9,5 +9,5 @@ spec:
     capacity:
         storage: 2Gi
     hostPath:
-        path: /data/pgdata1
+        path: /data/pgdata
 
