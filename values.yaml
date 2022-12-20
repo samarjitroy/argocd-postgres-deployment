@@ -14,8 +14,8 @@ service:
   port: 5432
 
 secret:
-  username:cG9zdGdyZXMK
-  password:U2NvdGlhMjAyMgo=
+  username: ZGJhZG1pbgo=
+  password: U2NvdGlhMjAyMgo=
 
 
 ingress:
