@@ -37,7 +37,7 @@ spec:
             claimName: pgdata-pv-claim
 ---
 apiVersion: v1
-kind: PersistentVolumnClaim
+kind: PersistentVolumeClaim
 metadata:
   name: pgdata-pv-claim
 spec:
