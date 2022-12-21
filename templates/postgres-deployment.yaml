@@ -28,17 +28,21 @@ spec:
           value: postgres
         - name: POSTGRES_PASSWORD
           value: Scotia2022
-        - name: PGDATA
-          mountPath: /data/pgdata
+        volumeMounts:
+          - name: postgres-storage
+            mountPath: /data/pgdata
+      volumes:
+        - name: postgres-storage
+          persistentVolumeClaim:
+            claimName: pgdata-pv-claim
   volumeClaimTemplates:
   - metadata:
-      name: pgdata
+      name: pgdata-pv-claim
     spec:
       whenDeleted: Delete
       whenScaled: Delete
       accessModes:
       - ReadWriteOnce
-      storageClassName: "manual"
       resources:
         requests:
-          storage: 2Gi
+          storage: 5Gi
