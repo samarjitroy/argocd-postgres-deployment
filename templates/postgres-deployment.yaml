@@ -30,19 +30,21 @@ spec:
           value: Scotia2022
         volumeMounts:
           - name: postgres-storage
-            mountPath: /data/pgdata
+            mountPath: /var/lib/postgres/pgdata
       volumes:
         - name: postgres-storage
           persistentVolumeClaim:
             claimName: pgdata-pv-claim
-  volumeClaimTemplates:
-  - metadata:
-      name: pgdata-pv-claim
-    spec:
-      whenDeleted: Delete
-      whenScaled: Delete
-      accessModes:
-      - ReadWriteOnce
-      resources:
-        requests:
-          storage: 5Gi
+---
+apiVersion: v1
+kind: PersistentVolumnClaim
+metadata:
+  name: pgdata-pv-claim
+spec:
+  whenDeleted: Delete
+  whenScaled: Delete
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 5Gi
