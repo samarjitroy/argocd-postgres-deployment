@@ -5,7 +5,7 @@ metadata:
   labels:
     app: {{ template "argocd-postgres-helm.name" . }}
 spec:
-  replicas: 1
+  replicas: 3
   selector:
     matchLabels:
       app: {{ template "argocd-postgres-helm.name" . }}
