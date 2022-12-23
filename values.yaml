@@ -15,7 +15,7 @@ service:
 
 secret:
   username: cG9zdGdy1ZXMK13
-  password: U2NvdGlh1MjAyMgo=12
+  password: dHJhdmVsMzcK
 
 
 ingress:
